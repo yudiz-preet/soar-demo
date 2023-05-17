@@ -16,7 +16,7 @@ const Dashboard = () => {
     return (<div>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <div>Dashboard</div>
-        <div><button onClick={() => setIsShowRoughCharts(!isShowRoughCharts)}>{isShowRoughCharts ? 'Home' : 'Show Rough Charts'}</button></div>
+        <div style={{ display: 'none' }}><button onClick={() => setIsShowRoughCharts(!isShowRoughCharts)}>{isShowRoughCharts ? 'Home' : 'Show Rough Charts'}</button></div>
         </div>
         {isShowRoughCharts ? (
             <div>

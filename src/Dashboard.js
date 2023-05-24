@@ -9,6 +9,8 @@ import ScanTimeWiseSummary from "./components/ScanTimeWiseSummary";
 import TopVulnerabilityWiseSummary from "./components/TopVulnerabilityWiseSummary";
 import TopPortWiseSummary from "./components/TopPortWiseSummary";
 import ApexDateWiseVulnerability from "./components/ApexDateWiseVulnerability";
+import ApexRangeBar from "./components/ApexRangeBar";
+import Dhruv from "./components/Dhruv";
 
 const Dashboard = () => {
     const [isShowRoughCharts, setIsShowRoughCharts] = useState(false)
@@ -32,7 +34,9 @@ const Dashboard = () => {
             </div>
         ) : (<div>
             {/* <DateWiseVulnerability /> */}
-            <ApexDateWiseVulnerability />
+            {/* <ApexDateWiseVulnerability /> */}
+            {/* <ApexRangeBar /> */}
+            <Dhruv />
         </div>)}
     </div>)
 }

@@ -1,8 +1,41 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
 import { BottomNavigation, BottomNavigationAction, colors } from '@material-ui/core'
+import { io } from "socket.io-client";
+import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts'
+
+const socket = io('http://localhost:3100/');
 
 const Dhruv = () => {
+  const [seriesData, setSeriesData] = useState([]);
+  const [labels, setLabels] = useState([]);
+
+  useEffect(() => {
+    socket.on("connect", () => {
+      console.log(socket.id); // x8WIv7-mJelg7on_ALbx
+    });
+  
+    socket.on('testMessage', function(data, labelsValue){
+      console.log('data1: ', data);
+      console.log('labelsValue: ', labelsValue)
+      setSeriesData(data || [])
+      setLabels(labelsValue || [])
+    })
+
+      return () => {
+        socket.off("connect", () => {
+          console.log(socket.id); // x8WIv7-mJelg7on_ALbx
+        });
+        
+        socket.off('testMessage', function(data, labelsValue){
+          console.log('data1: ', data);
+          console.log('labelsValue: ', labelsValue)
+          setSeriesData(data || [])
+          setLabels(labelsValue || [])
+        })
+          
+      }
+  }, [])
 
 var RadialBarOptions = {
   series: [75, 40, 30],
@@ -465,6 +498,111 @@ const LineWithDataLabel = {
   },
 }
 
+const RealTimeChart = {
+  series: [
+    {
+      name: "Chart-1",
+      type: "line",
+      data: [0, 15, 25, 20, 32, 27]
+    },
+    {
+      name: "Chart-2",
+      type: "line",
+      data: [0, 32, 20, 40, 20, 30]
+    },
+    {
+      name: "Chart-3",
+      type: "line",
+      data: [0, 38, 50, 10, 28, 43]
+    }
+  ],
+  chart: {
+    height: 350,
+    type: "line",
+    stacked: false,
+    animations: {
+      enabled: true,
+      easing: "linear",
+      speed: 0.5,
+      dynamicAnimation: {
+        speed: 1000
+      }
+    },
+    events: {
+      animationEnd: function (chartCtx) {
+        const newData1 = chartCtx.w.config.series[0].data.slice();
+        newData1.shift();
+        const newData2 = chartCtx.w.config.series[1].data.slice();
+        newData2.shift();
+        const newData3 = chartCtx.w.config.series[2].data.slice();
+        newData3.shift();
+
+        window.setTimeout(function () {
+          chartCtx.updateOptions(
+            {
+              series: [
+                {
+                  data: newData1
+                },
+                {
+                  data: newData2
+                },
+                {
+                  data: newData3
+                }
+              ],
+            },
+            false,
+            false,
+            false
+          );
+        }, 500);
+      }
+    },
+  },
+  stroke: {
+    curve: "smooth",
+    width: 5
+  },
+  // xaxis: {
+  //   type: "datetime",
+  //   // range: 2700000
+  // },
+  yaxis: {
+    max: 50,
+    min: 0
+  },
+  title: {
+    text: "Realtime Chart",
+    align: "left",
+    style: {
+      fontSize: "18px"
+    }
+  },
+  legend: {
+    show: false,
+    floating: true,
+    horizontalAlign: "left",
+    onItemClick: {
+      toggleDataSeries: false
+    },
+    position: "top",
+    offsetY: -33,
+    offsetX: 60
+  },
+  colors: ['#00008b', '#00FFFF', '#FFA500'],
+  dataLabels: {
+    enabled: true,
+    style: {
+      fontSize: '14px',
+      colors: undefined
+    },
+  },
+  noData: {
+    text: 'Data is Loading...'
+  }
+}
+
   return (
     <>
       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
@@ -533,6 +671,10 @@ const LineWithDataLabel = {
           <ReactApexChart options={PieChart} series={PieChart.series} type="pie" />
         </div>
 
+      </div>
+
+      <div style={{height:'500px', width:'700px', marginTop: '50px'}}>
+        <ReactApexChart options={{...RealTimeChart, series: seriesData, labels}} series={seriesData} />
       </div>
     </>
   )

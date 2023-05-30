@@ -6,7 +6,7 @@ import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts'
 
 const socket = io('http://localhost:3100/');
 
-const Dhruv = () => {
+const Nutshell = () => {
   const [seriesData, setSeriesData] = useState([]);
   const [labels, setLabels] = useState([]);
 
@@ -680,4 +680,4 @@ const RealTimeChart = {
   )
 }
 
-export default Dhruv
+export default Nutshell

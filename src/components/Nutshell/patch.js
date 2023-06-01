@@ -368,12 +368,12 @@ const ColumnStackedBarOptions = {
         </div>
       </div>
 
-      <div style={{height:'auto', width:'900px', background: '#2D3347'}}>
+      {/* <div style={{height:'auto', width:'900px', background: '#2D3347'}}>
         <div style={{ background: '#24272B', position: 'relative', padding: '10px', marginBottom: '10px' }}>
             <h3 style={{ color: '#E3E3E3', lineHeight: '16.8px', fontSize: '14px', fontWeight: '700', margin: '0', width: '386px' }}>Top 10 System Wise Severity Summary</h3>
         </div>
         <ReactApexChart options={StackedBarOptions} series={StackedBarOptions.series} type="bar" />
-      </div>
+      </div> */}
       <br/>
 
       <div style={{height:'auto', width:'900px', background: '#2D3347'}}>

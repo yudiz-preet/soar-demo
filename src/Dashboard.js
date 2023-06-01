@@ -12,6 +12,7 @@ import ApexDateWiseVulnerability from "./components/ApexDateWiseVulnerability";
 import ApexRangeBar from "./components/ApexRangeBar";
 import Nutshell from "./components/Nutshell";
 import Patch from "./components/Nutshell/patch";
+import Audit from "./components/Nutshell/audit";
 
 const Dashboard = () => {
     const [isShowRoughCharts, setIsShowRoughCharts] = useState(false)
@@ -38,7 +39,8 @@ const Dashboard = () => {
             {/* <ApexDateWiseVulnerability /> */}
             {/* <ApexRangeBar /> */}
             {/* <Nutshell /> */}
-            <Patch />
+            {/* <Patch /> */}
+            <Audit />
         </div>)}
     </div>)
 }

@@ -51,6 +51,9 @@ const Audit = () => {
       type: 'bar',
       height: 350,
       stacked: false,
+      toolbar: {
+        show: false
+      }
     },
     plotOptions: {
       bar: {
@@ -164,6 +167,9 @@ const Audit = () => {
         click: function(chart, w, e) {
           // console.log(chart, w, e)
         }
+      },
+      toolbar: {
+        show: false
       }
     },
     colors: ['#EC726E', '#F0B05D', '#68C2DF', '#07A13B', '#EA62A3', '#6CCDE2', '#FF3A29', '#4339F2', '#CCF8FE', '#CACACA', '#FFB200', '#6FCF97', '#2D9CDB', '#FFF5CC', '#F9F279'],

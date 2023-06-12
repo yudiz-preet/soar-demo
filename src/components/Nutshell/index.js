@@ -101,6 +101,9 @@ const StackedBarOptions = {
     type: 'bar',
     height: 350,
     stacked: true,
+    toolbar: {
+      show: false
+    }
   },
   plotOptions: {
     bar: {
@@ -254,6 +257,9 @@ const PatternedStackedBarOptions = {
       enabled: true,
       blur: 0,
       opacity: 0.5
+    },
+    toolbar: {
+      show: false
     }
   },
   plotOptions: {
@@ -526,7 +532,10 @@ const RealTimeChart = {
       speed: 0.5,
       dynamicAnimation: {
         speed: 1000
-      }
+      },
+    },
+    toolbar: {
+      show: false
     },
     events: {
       animationEnd: function (chartCtx) {
@@ -556,7 +565,7 @@ const RealTimeChart = {
             false,
             false
           );
-        }, 500);
+        }, 300);
       }
     },
   },
